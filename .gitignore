@@ -2,3 +2,10 @@ __pycache__
 bp_projects/__pycache__/projects.cpython-39.pyc
 __init__.pyc
 volumes/sqlite.db
+volumes/flask_portfolio.db
+env/shell.nix
+env/requirements.txt
+env/python.nix
+env/lock.toml
+env/inputs.nix
+env/default.nix
