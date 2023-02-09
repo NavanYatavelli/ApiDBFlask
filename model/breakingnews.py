@@ -24,12 +24,16 @@ class BreakingNews(db.Model):
     _title = db.Column(db.String(255), unique=False, nullable=False)
     _network = db.Column(db.String(255), unique=False, nullable=False)
     _day = db.Column(db.Date)
+    _city = db.Column(db.String(255), unique=False, nullable=False)
+    _zip =  db.Column(db.Integer, primary_key=True, unique=False)
 
     # constructor of a User object, initializes the instance variables within object (self)
-    def __init__(self, title, network, day=date.today()):
+    def __init__(self, title, network, day=date.today(), city, zip):
         self._title = title    # variables with self prefix become part of the object, 
         self._network = network
         self._day = day
+        self._city = city
+        self._zip = zip
 
     # a name getter method, extracts name from object
     @property
@@ -65,7 +69,27 @@ class BreakingNews(db.Model):
     @day.setter
     def day(self, day):
         self._day = day
+
+    # a getter method, extracts city from object
+    @property
+    def city(self):
+        return self._city
     
+    # a setter function, allows city to be updated after initial object creation
+    @network.setter
+    def city(self, city):
+        self._city = city
+        
+    # a getter method, extracts zip from object
+    @property
+    def zip(self):
+        return self._zip
+    
+    # a setter function, allows zip to be updated after initial object creation
+    @network.setter
+    def zip(self, zip):
+        self._zip = zip
+        
     @property
     def age(self):
         today = date.today()
@@ -97,6 +121,8 @@ class BreakingNews(db.Model):
             "network": self.network,
             "day": self.day,
             "age": self.age
+            "city": self.city,
+            "zip": self.zip            
         }
 
     # CRUD update: updates user name, password, phone
@@ -126,16 +152,16 @@ def initBreakingNews():
     """Create database and tables"""
     db.create_all()
     """Tester data for table"""
-    u1 = BreakingNews(title='Bolsonaro supporters storm Brazilian Congress.', network='CNN', day=date(2023, 1, 21))
-    u2 = BreakingNews(title='Kevin McCarthy is new speaker', network='Fox', day=date(2023, 1, 20))
-    u3 = BreakingNews(title='Woman sentenced to three years in state prison for collecting 400,000 in viral GoFundMe scam', network='ABC', day=date(2023, 1, 19))
-    u4 = BreakingNews(title='Ukraine denies Russian claim it killed 600 soldiers', network='NBC', day=date(2023, 1, 20))
-    u5 = BreakingNews(title='Damar Hamlin: Buffalo Bills make stirring display in support of safety during victory', network='BBC', day=date(2023, 1, 22))
-    u6 = BreakingNews(title='Worshippers in Tokyo plunge into ice bath to mark new year', network='CNN', day=date(2023, 1, 21))
-    u7 = BreakingNews(title='Driver crashes and flips vehicle inside drive-through car wash', network='Fox', day=date(2023, 1, 20))
-    u8 = BreakingNews(title='Brazilian police fire tear gas at Bolsonaro supporters', network='ABC', day=date(2023, 1, 19))
-    u9 = BreakingNews(title='Deer rescued from frozen river in Wisconsin', network='NBC', day=date(2023, 1, 20))
-    u10 = BreakingNews(title='Two years after Covid food still tastes rotten', network='BBC', day=date(2023, 1, 22))
+    u1 = BreakingNews(title='Padres FanFest mayhem: Long lines, crowded concourses, and delayed entry', network='CNN', day=date(2023, 1, 21), city="San Diego", zip=92127)
+    u2 = BreakingNews(title='Temecula - Forklifts Stolen From Home Depot', network='Fox', day=date(2023, 1, 20), city="Temecula", zip=92028)
+    u3 = BreakingNews(title='Long Beach State beats UC Irvine in OT', network='ABC', day=date(2023, 1, 19), city="Irvine", zip=92697)
+    u4 = BreakingNews(title='El Centro will conduct a public hearing for new parks', network='NBC', day=date(2023, 1, 20), city="El Centro", zip=92243)
+    u5 = BreakingNews(title='Backpacking Permits For Joshua Tree National Park Available Online', network='BBC', day=date(2023, 1, 22), city="Joshua Tree", zip=92252)
+    u6 = BreakingNews(title='Escondido council appoints Palomar College trustee to vacant seat', network='CNN', day=date(2023, 1, 21), city="Escondido", zip=92025)
+    u7 = BreakingNews(title='Salton Sea reduced inflow, the lake is shrinking and rising in salinity', network='Fox', day=date(2023, 1, 20), city="Salton Sea", zip=92274)
+    u8 = BreakingNews(title='Mouse born at San Diego Zoo Safari Park wins Guinness award for longevity', network='CNN', day=date(2023, 1, 21), city="San Diego", zip=92127)
+    u9 = BreakingNews(title='Irvine Spectrum Adds First OC Shake Shack', network='NBC', day=date(2023, 1, 20), city="Irvine", zip=92697)
+    u10 = BreakingNews(title='San Diego celebrates National Pizza Day', network='BBC', day=date(2023, 1, 22), city="San Diego", zip=92127)
 
     
     breaking_news = [u1, u2, u3, u4, u5, u6, u7, u8, u9, u10]
