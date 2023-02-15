@@ -30,7 +30,7 @@ class BreakingNews(db.Model):
     _lng =  db.Column(db.Float, unique=False)
     
     # constructor of a User object, initializes the instance variables within object (self)
-    def __init__(self, title, network, day=date.today(), city, link, lat, lng):
+    def __init__(self, title, network, day=date.today(), city="San Diego", link="www.cnn.com", lat=32.7157, lng=-117.1611 ):
         self._title = title    # variables with self prefix become part of the object, 
         self._network = network
         self._day = day
@@ -80,7 +80,7 @@ class BreakingNews(db.Model):
         return self._city
     
     # a setter function, allows city to be updated after initial object creation
-    @network.setter
+    @city.setter
     def city(self, city):
         self._city = city
         
@@ -90,7 +90,7 @@ class BreakingNews(db.Model):
         return self._link
     
     # a setter function, allows link to be updated after initial object creation
-    @network.setter
+    @link.setter
     def link(self, link):
         self._link = link
 
@@ -100,7 +100,7 @@ class BreakingNews(db.Model):
         return self._lat
     
     # a setter function, allows lat to be updated after initial object creation
-    @network.setter
+    @lat.setter
     def lat(self, lat):
         self._lat = lat
 
@@ -110,7 +110,7 @@ class BreakingNews(db.Model):
         return self._lng
     
     # a setter function, allows lng to be updated after initial object creation
-    @network.setter
+    @lng.setter
     def lng(self, lng):
         self._lng = lng
         
@@ -178,16 +178,16 @@ def initBreakingNews():
     """Create database and tables"""
     db.create_all()
     """Tester data for table"""
-    u1 = BreakingNews(title='Padres FanFest mayhem: Long lines, crowded concourses, and delayed entry', network='CNN', day=date(2023, 1, 21), city="San Diego", "https://www.cbs8.com/article/news/local/padres-fanfest-mayhem-crowded-concourses-and-delayed-entry/509-543c588b-0eba-4c95-bb84-b3538894dd77",lat=32.7157,lng=-117.1611)
-    u2 = BreakingNews(title='Temecula - Forklifts Stolen From Home Depot', network='Fox', day=date(2023, 1, 20), city="Temecula", "https://fox5sandiego.com/news/local-news/forklift-stolen-from-oceanside-home-depot-in-broad-daylight/",lat=33.4934,lng=-117.1488)
-    u3 = BreakingNews(title='Long Beach State beats UC Irvine in OT', network='ABC', day=date(2023, 1, 19), city="Irvine", "https://www.usatoday.com/story/sports/ncaab/2023/02/05/long-beach-state-beats-uc-irvine-in-ot-for-6th-straight-win/51256357/",lat=33.6846,lng=-117.8265)
-    u4 = BreakingNews(title='El Centro will conduct a public hearing for new parks', network='NBC', day=date(2023, 1, 20), city="El Centro", "https://www.ivpressonline.com/",lat=32.7920,lng=-115.5631)
-    u5 = BreakingNews(title='Backpacking Permits For Joshua Tree National Park Available Online', network='BBC', day=date(2023, 1, 22), city="Joshua Tree", "https://www.nps.gov/jotr/planyourvisit/permitsandreservations.htm",lat=33.8734,lng=-115.9010)
-    u6 = BreakingNews(title='Escondido council appoints Palomar College trustee to vacant seat', network='CNN', day=date(2023, 1, 21), city="Escondido", "https://thecoastnews.com/escondido-council-appoints-palomar-college-trustee-to-vacant-seat/",lat=33.1192,lng=-117.0864)
-    u7 = BreakingNews(title='Salton Sea reduced inflow, the lake is shrinking and rising in salinity', network='Fox', day=date(2023, 1, 20), city="Salton Sea", "https://onlinelibrary.wiley.com/doi/10.1111/1752-1688.13063?af=R",lat=33.3286,lng=-115.8434)
-    u8 = BreakingNews(title='Mouse born at San Diego Zoo Safari Park wins Guinness award for longevity', network='CNN', day=date(2023, 1, 21), city="San Diego", "https://www.10news.com/news/local-news/mouse-born-at-san-diego-zoo-safari-park-wins-guinness-award-for-longevity",lat=32.7157,lng=-117.1611)
-    u9 = BreakingNews(title='Irvine Spectrum Adds First OC Shake Shack', network='NBC', day=date(2023, 1, 20), city="Irvine", "https://www.10news.com/news/local-news/mouse-born-at-san-diego-zoo-safari-park-wins-guinness-award-for-longevity",lat=33.6846,lng=-117.1488)
-    u10 = BreakingNews(title='San Diego celebrates National Pizza Day', network='BBC', day=date(2023, 1, 22), city="San Diego", "https://www.kusi.com/san-diego-celebrates-national-pizza-day/",lat=32.7157,lng=-117.1611)
+    u1 = BreakingNews(title='Padres FanFest mayhem: Long lines, crowded concourses, and delayed entry', network='CNN', day=date(2023, 1, 21), city="San Diego", link="https://www.cbs8.com/article/news/local/padres-fanfest-mayhem-crowded-concourses-and-delayed-entry/509-543c588b-0eba-4c95-bb84-b3538894dd77",lat=32.7157,lng=-117.1611)
+    u2 = BreakingNews(title='Temecula - Forklifts Stolen From Home Depot', network='Fox', day=date(2023, 1, 20), city="Temecula", link="https://fox5sandiego.com/news/local-news/forklift-stolen-from-oceanside-home-depot-in-broad-daylight/",lat=33.4934,lng=-117.1488)
+    u3 = BreakingNews(title='Long Beach State beats UC Irvine in OT', network='ABC', day=date(2023, 1, 19), city="Irvine", link="https://www.usatoday.com/story/sports/ncaab/2023/02/05/long-beach-state-beats-uc-irvine-in-ot-for-6th-straight-win/51256357/",lat=33.6846,lng=-117.8265)
+    u4 = BreakingNews(title='El Centro will conduct a public hearing for new parks', network='NBC', day=date(2023, 1, 20), city="El Centro", link="https://www.ivpressonline.com/",lat=32.7920,lng=-115.5631)
+    u5 = BreakingNews(title='Backpacking Permits For Joshua Tree National Park Available Online', network='BBC', day=date(2023, 1, 22), city="Joshua Tree", link="https://www.nps.gov/jotr/planyourvisit/permitsandreservations.htm",lat=33.8734,lng=-115.9010)
+    u6 = BreakingNews(title='Escondido council appoints Palomar College trustee to vacant seat', network='CNN', day=date(2023, 1, 21), city="Escondido", link="https://thecoastnews.com/escondido-council-appoints-palomar-college-trustee-to-vacant-seat/",lat=33.1192,lng=-117.0864)
+    u7 = BreakingNews(title='Salton Sea reduced inflow, the lake is shrinking and rising in salinity', network='Fox', day=date(2023, 1, 20), city="Salton Sea", link="https://onlinelibrary.wiley.com/doi/10.1111/1752-1688.13063?af=R",lat=33.3286,lng=-115.8434)
+    u8 = BreakingNews(title='Mouse born at San Diego Zoo Safari Park wins Guinness award for longevity', network='CNN', day=date(2023, 1, 21), city="San Diego", link="https://www.10news.com/news/local-news/mouse-born-at-san-diego-zoo-safari-park-wins-guinness-award-for-longevity",lat=32.7157,lng=-117.1611)
+    u9 = BreakingNews(title='Irvine Spectrum Adds First OC Shake Shack', network='NBC', day=date(2023, 1, 20), city="Irvine", link="https://www.10news.com/news/local-news/mouse-born-at-san-diego-zoo-safari-park-wins-guinness-award-for-longevity",lat=33.6846,lng=-117.1488)
+    u10 = BreakingNews(title='San Diego celebrates National Pizza Day', network='BBC', day=date(2023, 1, 22), city="San Diego", link="https://www.kusi.com/san-diego-celebrates-national-pizza-day/",lat=32.7157,lng=-117.1611)
 
     
     breaking_news = [u1, u2, u3, u4, u5, u6, u7, u8, u9, u10]
